@@ -29,4 +29,24 @@ class AuthorTest extends TestCase
         $this->assertEquals('1988/14/05',$author->first()->dob->format('Y/d/m'));
 
     }
+
+    /** @test */
+    public function nameRequired()
+    {
+        $response = $this->post('/authors', array_merge($this->data(), ['name' => '']));
+        $response->assertSessionHasErrors('name');
+    }
+    /** @test */
+    public function dobRequired()
+    {
+        $response = $this->post('/authors', array_merge($this->data(), ['dob' => '']));
+        $response->assertSessionHasErrors('dob');
+    }
+    private function data()
+    {
+        return [
+            'name' => 'Author Name',
+            'dob' => '05/14/1988',
+        ];
+    }
 }

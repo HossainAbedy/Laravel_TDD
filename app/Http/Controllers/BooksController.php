@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Book;
 
+use App\Book;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -28,7 +28,7 @@ class BooksController extends Controller
     {
         return request()->validate([
             'title' => 'required',
-            'author' => 'required',
+            'author_id' => 'required',
         ]);
     }
 }
